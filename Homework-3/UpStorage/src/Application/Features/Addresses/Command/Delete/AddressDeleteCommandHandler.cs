@@ -17,10 +17,18 @@ namespace Application.Features.Addresses.Command.Delete
         public async Task<Response<int>> Handle(AddressDeleteCommand request, CancellationToken cancellationToken)
         {
             var address = await _applicationDbContext.Addresses.Where(a => a.Id == request.AddressId).FirstOrDefaultAsync();
-            address.IsDeleted = true;
-            await _applicationDbContext.SaveChangesAsync(cancellationToken);
+            if (address == null)
+            {
+                return new Response<int>("The address was not found.");
+            }
+            else
+            {
+                address.IsDeleted = true;
+                await _applicationDbContext.SaveChangesAsync(cancellationToken);
 
-            return new Response<int>($"The address named \"{address.Name}\" was successfully deleted.");
+                return new Response<int>($"The address named \"{address.Name}\" was successfully deleted.");
+            }
+           
         }
     }
 }

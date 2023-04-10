@@ -22,5 +22,6 @@ namespace Domain.Entities
         public string? AddressLine2 { get; set; }
 
         public AddressType AddressType { get; set; }
+        public User User { get; set; }
     }
 }

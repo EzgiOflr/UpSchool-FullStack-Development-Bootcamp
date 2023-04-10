@@ -14,7 +14,8 @@ namespace Infrastructure.Persistence.Configurations.Application
             builder.Property(x => x.AddressType).HasConversion<int>();
 
             // Relationships
-            builder.HasOne<User>().WithMany()
+            builder.HasOne<User>(x => x.User)
+                .WithMany(x => x.Addresses)
                 .HasForeignKey(x => x.UserId);
 
             builder.ToTable("Addresses");
