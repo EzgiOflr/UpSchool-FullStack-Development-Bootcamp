@@ -1,1 +1,1 @@
-# UpSchoolHomework_1 Upschool 1.ödev
+# UpSchoolHomework_1 Upschool 
